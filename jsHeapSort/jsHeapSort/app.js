@@ -17,22 +17,22 @@ function swap(firstIndex, secondIndex) {
     array[secondIndex] = helper;
 }
 
-function pushMaxNumToStart(index) {
+function findMaxNumIndex(index) {
     var lastLeftIndex = 2 * index + 1;
     var lastRightIndex = 2 * index + 2;
     var HigherNumIndex = index;
 
-    if (lastLeftIndex < arrayLength && array[lastLeftIndex] > array[HigherNumIndex]) {
+    if (lastLeftIndex < arrayLength && array[lastLeftIndex] > array[HigherNumIndex])
         HigherNumIndex = lastLeftIndex;
-    }
+    
 
-    if (lastRightIndex < arrayLength && array[lastRightIndex] > array[HigherNumIndex]) {
+    if (lastRightIndex < arrayLength && array[lastRightIndex] > array[HigherNumIndex])
         HigherNumIndex = lastRightIndex;
-    }
+    
 
     if (HigherNumIndex != index) {
         swap(index, HigherNumIndex);
-        pushMaxNumToStart(HigherNumIndex);
+        findMaxNumIndex(HigherNumIndex);
     }
 }
 
@@ -40,13 +40,13 @@ function sort() {
     arrayLength = array.length;
 
     for (var i = Number.parseInt(arrayLength / 2); i >= 0; i -= 1) {
-        pushMaxNumToStart(i);
+        findMaxNumIndex(i);
     }
 
     for (var i = array.length - 1; i > 0; i--) {        
         arrayLength--;
         swap(0, i);
-        pushMaxNumToStart(0);
+        findMaxNumIndex(0);
     }
 }
 
