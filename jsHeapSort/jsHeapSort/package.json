@@ -1,0 +1,9 @@
+{
+  "name": "js-heap-sort",
+  "version": "0.0.0",
+  "description": "jsHeapSort",
+  "main": "app.js",
+  "author": {
+    "name": ""
+  }
+}
