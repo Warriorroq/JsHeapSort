@@ -10,11 +10,8 @@ function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
 }
 
-function swap(firstIndex, secondIndex) {
-    var helper = array[firstIndex];
-
-    array[firstIndex] = array[secondIndex];
-    array[secondIndex] = helper;
+function swapByIndex(firstIndex, secondIndex) {
+    [array[firstIndex], array[secondIndex]] = [array[secondIndex], array[firstIndex]];
 }
 
 function findMaxNumIndex(index) {
@@ -31,7 +28,7 @@ function findMaxNumIndex(index) {
     
 
     if (HigherNumIndex != index) {
-        swap(index, HigherNumIndex);
+        swapByIndex(index, HigherNumIndex);
         findMaxNumIndex(HigherNumIndex);
     }
 }
@@ -45,7 +42,7 @@ function sort() {
 
     for (var i = array.length - 1; i > 0; i--) {        
         arrayLength--;
-        swap(0, i);
+        swapByIndex(0, i);
         findMaxNumIndex(0);
     }
 }
@@ -53,7 +50,7 @@ function sort() {
 function main() {
 
     for (var i = 0; i < 100; i++)
-        array[i] = getRandomInt(101);
+        array[i] = getRandomInt(1001);
 
     console.log(`Array there ${array}! \n`);
 
@@ -61,7 +58,7 @@ function main() {
 
     console.log(`New there ${array}! \n`);
 
-    readline.question('', name => {});
+    readline.question('');
 }
 
 main();
