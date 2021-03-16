@@ -1,5 +1,4 @@
 var arrayLength = 0;
-var array = []; //= [4, 2, 3, 1, 54, 10, 35, 28, 19, 31, 97, 64, 51, 62, 44];
 
 const readline = require('readline').createInterface({
     input: process.stdin,
@@ -10,53 +9,52 @@ function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
 }
 
-function swapByIndex(firstIndex, secondIndex) {
-    [array[firstIndex], array[secondIndex]] = [array[secondIndex], array[firstIndex]];
+function swapByIndex(firstIndex, secondIndex, func_array) {
+    [func_array[firstIndex], func_array[secondIndex]] = [func_array[secondIndex], func_array[firstIndex]];
 }
 
-function findMaxNumIndex(index) {
+function findMaxNumIndex(index, func_array) {
     var lastLeftIndex = 2 * index + 1;
     var lastRightIndex = 2 * index + 2;
     var HigherNumIndex = index;
 
-    if (lastLeftIndex < arrayLength && array[lastLeftIndex] > array[HigherNumIndex])
+    if (lastLeftIndex < arrayLength && func_array[lastLeftIndex] > func_array[HigherNumIndex])
         HigherNumIndex = lastLeftIndex;
     
 
-    if (lastRightIndex < arrayLength && array[lastRightIndex] > array[HigherNumIndex])
+    if (lastRightIndex < arrayLength && func_array[lastRightIndex] > func_array[HigherNumIndex])
         HigherNumIndex = lastRightIndex;
     
 
     if (HigherNumIndex != index) {
-        swapByIndex(index, HigherNumIndex);
-        findMaxNumIndex(HigherNumIndex);
+        swapByIndex(index, HigherNumIndex, func_array);
+        findMaxNumIndex(HigherNumIndex, func_array);
     }
 }
 
-function sort() {
-    arrayLength = array.length;
-
+function sort(func_array) {
+    arrayLength = func_array.length;
     for (var i = Number.parseInt(arrayLength / 2); i >= 0; i -= 1) {
-        findMaxNumIndex(i);
+        findMaxNumIndex(i, func_array);
     }
 
-    for (var i = array.length - 1; i > 0; i--) {        
+    for (var i = func_array.length - 1; i > 0; i--) {        
         arrayLength--;
-        swapByIndex(0, i);
-        findMaxNumIndex(0);
+        swapByIndex(0, i, func_array);
+        findMaxNumIndex(0, func_array);
     }
 }
 
 function main() {
-
+    var arrayMine = [];
     for (var i = 0; i < 100; i++)
-        array[i] = getRandomInt(1001);
+        arrayMine[i] = getRandomInt(1001);
 
-    console.log(`Array there ${array}! \n`);
+    console.log(`Array there ${arrayMine}! \n`);
 
-    sort();
+    sort(arrayMine);
 
-    console.log(`New there ${array}! \n`);
+    console.log(`New there ${arrayMine}! \n`);
 
     readline.question('');
 }
